@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {# ... #}
+
+    {# store the prototype on the data-prototype attribute #}
+    <ul id="email-fields-list"
+        data-prototype="{{ form_widget(form.cars.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ form.cars|length }}">
+        {% for carField in form.cars %}
+            <li>
+                {{ form_errors(carField) }}
+                {{ form_widget(carField) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <button type="button"
+            class="add-another-collection-widget"
+            data-list-selector="#email-fields-list">Dodaj nowe pole</button>
+
+    {# ... #}
+    {{ form_end(form) }}
+
+{% endblock %}
